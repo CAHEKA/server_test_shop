@@ -26,7 +26,7 @@ SECRET_KEY = 1234567890
 # TODO: CHANGE DEBUG TO FALSE IN PRODUCTION!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['server-qimw.onrender.com']
 
 
 # Application definition
