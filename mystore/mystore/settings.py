@@ -26,7 +26,7 @@ SECRET_KEY = 1234567890
 # TODO: CHANGE DEBUG TO FALSE IN PRODUCTION!
 DEBUG = True
 
-ALLOWED_HOSTS = ['server-qimw.onrender.com','front-d1m0.onrender.com']
+ALLOWED_HOSTS = ['https://server-qimw.onrender.com','https://front-d1m0.onrender.com']
 
 
 # Application definition
@@ -62,8 +62,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-    "server-qimw.onrender.com",
-    "front-d1m0.onrender.com",
+    "https://server-qimw.onrender.com",
+    "https://front-d1m0.onrender.com",
 ]
 
 CORS_ALLOW_METHODS = [
