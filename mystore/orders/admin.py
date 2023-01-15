@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order
+from .models import Orders
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -7,4 +7,4 @@ class OrderAdmin(admin.ModelAdmin):
                     'full_address', 'status', 'created_at')
 
 
-admin.site.register(Order, OrderAdmin)
+admin.site.register(Orders, OrderAdmin)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
+
 
 
 phone_validator = RegexValidator(
@@ -41,7 +43,8 @@ class Orders(models.Model):
 
 
 class DeliveryData(models.Model):
-    order = models.OneToOneField(Orders, related_name='localize', on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    order = models.OneToOneField('Orders', on_delete=models.CASCADE)
     first_name = models.CharField(max_length=150, blank=False)
     last_name = models.CharField(max_length=150, blank=False)
     email = models.EmailField(blank=False)
