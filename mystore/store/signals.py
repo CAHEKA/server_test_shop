@@ -1,10 +1,10 @@
 from django.db.models.signals import post_save
 from django.dispatch.dispatcher import receiver
 
-from .models import Product, Rating
+from .models import Products, Feedbacks
 
 
-@receiver(post_save, sender=Product)
+@receiver(post_save, sender=Products)
 def create_rating(sender, instance, created, **kwargs):
     if created:
-        Rating.objects.create(product=instance)
+        Feedbacks.objects.create(products=instance)

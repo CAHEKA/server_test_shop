@@ -2,13 +2,13 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from .serializers import OrderSerializers
-from .models import Order
+from .models import Orders
 
-from store.models import Product, Rating
+from mystore.store.models import Products, Feedbacks
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all().order_by('-created_at')
+    queryset = Orders.objects.all().order_by('-created_at')
     serializer_class = OrderSerializers
 
     def create(self, request):
@@ -22,7 +22,7 @@ class OrderViewSet(viewsets.ModelViewSet):
                 i.pop('image')
                 item_id = i.get('itemId')
                 qty = i.get('qty')
-                p = Product.objects.get(pk=item_id)
+                p = Products.objects.get(pk=item_id)
 
                 if p.inventory == 0:
                     return Response(status=status.HTTP_409_CONFLICT)
@@ -34,7 +34,8 @@ class OrderViewSet(viewsets.ModelViewSet):
                 for i in rating:
                     item_id = i.get('itemId')
                     value = i.get('value')
-                    r = Rating.objects.get(product=item_id)
+                    r = Feedbacks.objects.get(products=item_id)
+
                     if value == 1:
                         r.one += 1
                     elif value == 2:
@@ -47,8 +48,7 @@ class OrderViewSet(viewsets.ModelViewSet):
                         r.five += 1
                     r.save()
 
-            serializer = self.serializer_class(data=order,
-                                               context={'request': request})
+            serializer = self.serializer_class(data=order, context={'request': request})
             if serializer.is_valid():
                 serializer.save()
                 return Response(status=status.HTTP_200_OK)

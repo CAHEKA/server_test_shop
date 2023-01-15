@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Rating
+from .models import Feedbacks
 
 
 class QuestionModelTests(TestCase):
